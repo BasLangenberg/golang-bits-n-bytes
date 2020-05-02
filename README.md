@@ -7,6 +7,7 @@
 De opdrachten kunnen op verschillende manieren uitgevoerd worden:
 
 - Visual Studio Code & Docker
+- gitpod.io
 
 ### Visual Studio Code & Docker
 
@@ -18,6 +19,12 @@ Visual Studio Code start automatisch een Docker container met daarin alle benodi
 Open de folder in Visual Studio Code. Hierna vraagt Visual Studio Code om de container te bouwen en te starten.
 
 ![](assets/vscode-remote-open.png)
+
+### gitpod.io
+
+Deze repository is te openen via gitpod.io door op deze link te klikken: https://gitpod.io/#https://github.com/ninckblokje/golang-bits-n-bytes. Hiervoor is een GitHub account nodig.
+
+De tour werkt (nog) niet via gitpod.io.
 
 ## Tour
 
