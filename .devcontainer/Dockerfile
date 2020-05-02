@@ -81,3 +81,7 @@ ENV GO111MODULE=auto
 
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
+
+# custom stuff
+EXPOSE 3999
+RUN go get golang.org/x/tour
