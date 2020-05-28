@@ -84,4 +84,6 @@ ENV DEBIAN_FRONTEND=dialog
 
 # custom stuff
 EXPOSE 3999
-RUN go get golang.org/x/tour
+RUN apt update \
+        && apt install -y openjdk-11-jdk \
+        && go get golang.org/x/tour
