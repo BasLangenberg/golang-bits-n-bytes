@@ -29,9 +29,10 @@ De tour werkt (nog) niet via gitpod.io.
 
 ### Eigen installatie
 
-Installeer Golang en Java (optioneel):
+Installeer Golang, TinyGo (optioneel) en Java (optioneel):
 
 1. Download Golang versie 1.14.x van: <https://golang.org/>
+1. Download TinyGo versie 0.13.1 van: <https://tinygo.org/>
 1. Download Java versie 11.x van: <https://adoptopenjdk.net/>
 
 ## Tour
@@ -47,4 +48,5 @@ Golang heeft een eigen tour die lokaal gedraaid kan worden:
 ## Opzet Bits n Bytes
 
 1. De folder [intro](intro/intro.md) bevat een introductie tot Golang.
+1. De folder [tinygo](tinygo/tinygo.md) bevat een voorbeeld van TinyGo met WebAssembly
 1. De folder [RESTService](RESTService/objectives.md) bevat een opdracht voor het bouwen van een eigen REST service

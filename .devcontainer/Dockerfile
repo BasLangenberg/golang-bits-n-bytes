@@ -86,4 +86,8 @@ ENV DEBIAN_FRONTEND=dialog
 EXPOSE 3999
 RUN apt update \
         && apt install -y openjdk-11-jdk \
-        && go get golang.org/x/tour
+        && go get golang.org/x/tour \
+        && wget https://github.com/tinygo-org/tinygo/releases/download/v0.13.1/tinygo_0.13.1_amd64.deb \
+        && dpkg -i tinygo_0.13.1_amd64.deb
+
+ENV PATH="/usr/local/tinygo/bin:${PATH}"
