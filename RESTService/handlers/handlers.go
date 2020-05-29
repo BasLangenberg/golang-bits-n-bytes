@@ -73,12 +73,17 @@ func (app *Syntappd) PostBeer(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{ "error": "invalid request body"`))
+		w.Write([]byte(`{ "error": "invalid request body" }`))
 		return
 	}
 
-	rb := beer.PostBeer(&nb, app.d)
-
+	rb, err := beer.PostBeer(&nb, app.d)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(`{ "error": "invalid input json"`))
+		return
+	}
 	json.NewEncoder(w).Encode(rb)
 
 }

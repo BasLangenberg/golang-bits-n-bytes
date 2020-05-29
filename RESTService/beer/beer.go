@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"time"
+	"github.com/go-playground/validator/v10"
 )
 
 // Beer holds values for a single beer object
 type Beer struct {
 	Id      string    `json:"id"`
-	Name    string    `json:"name"`
-	Brewery string    `json:"brewery"`
+	Name    string    `json:"name" validate:"required"`
+	Brewery string    `json:"brewery" validate:"required"`
 	Reviews []Rating  `json:"reviews"`
 	AddedOn time.Time `json:"added_on"`
 }
@@ -33,7 +34,7 @@ type Rating struct {
 	Review  string    `json:"review"`
 }
 
-func PostBeer(nb *NewBeer, db Beers) Beer {
+func PostBeer(nb *NewBeer, db Beers) (Beer, error) {
 
 	beer := Beer{
 		Id:      uuid.New().String(),
@@ -43,8 +44,14 @@ func PostBeer(nb *NewBeer, db Beers) Beer {
 		AddedOn: time.Now(),
 	}
 
+	v := validator.New()
+	err := v.Struct(beer)
+	if err != nil {
+		return Beer{}, fmt.Errorf("error validating input: %+v", err)
+	}
+
 	db[beer.Id] = beer
-	return beer
+	return beer, nil
 }
 
 func GetBeer(i string, db Beers) (Beer, error) {
