@@ -8,6 +8,7 @@ De opdrachten kunnen op verschillende manieren uitgevoerd worden:
 
 - Visual Studio Code & Docker
 - gitpod.io
+- Eigen installatie
 
 ### Visual Studio Code & Docker
 
@@ -26,6 +27,14 @@ Deze repository is te openen via gitpod.io door op deze link te klikken: https:/
 
 De tour werkt (nog) niet via gitpod.io.
 
+### Eigen installatie
+
+Installeer Golang, TinyGo (optioneel) en Java (optioneel):
+
+1. Download Golang versie 1.14.x van: <https://golang.org/>
+1. Download TinyGo versie 0.13.1 van: <https://tinygo.org/>
+1. Download Java versie 11.x van: <https://adoptopenjdk.net/>
+
 ## Tour
 
 Golang heeft een eigen tour die lokaal gedraaid kan worden:
@@ -35,3 +44,9 @@ Golang heeft een eigen tour die lokaal gedraaid kan worden:
 3. Open een browser op: http://localhost:3999
 
 ![](assets/go-tour.png)
+
+## Opzet Bits n Bytes
+
+1. De folder [intro](intro/intro.md) bevat een introductie tot Golang.
+1. De folder [tinygo](tinygo/tinygo.md) bevat een voorbeeld van TinyGo met WebAssembly
+1. De folder [RESTService](RESTService/objectives.md) bevat een opdracht voor het bouwen van een eigen REST service

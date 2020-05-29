@@ -57,4 +57,25 @@ func main() {
 	fmt.Printf("Type: %T Length: %d Value: %v\n", b, unsafe.Sizeof(b), b)
 
 	fmt.Printf("Type: %T Length: %d Value: %v\n", err, unsafe.Sizeof(err), err)
+
+	var s1 string = "Hello world"
+	var s2 string
+	s2 = "Hello world 2"
+
+	var (
+		s3 string = "Hello world the 3rd"
+		s4 string
+	)
+
+	s4 = "Hello world 4"
+
+	const s5 = "Hello 5 worlds"
+
+	fmt.Printf("%v | %v | %v | %v | %v\n", s1, s2, s3, s4, s5)
+
+	i1 := [...]int{1, 2, 3, 4, 5, 6}
+	fmt.Printf("%v\n", i1)
+
+	var i2 [6]int = [...]int{1, 2, 3, 4, 5, 6}
+	fmt.Printf("%v\n", i2)
 }
