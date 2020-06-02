@@ -16,7 +16,7 @@ func main() {
 	//	os.Exit(1)
 	//}
 
-	app := handlers.New(beer.Beers{})
+	app := handlers.New(beer.InMemoryBeerStore{})
 
 	// Setup Handlers
 	r := mux.NewRouter()

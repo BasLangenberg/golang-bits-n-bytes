@@ -7,6 +7,13 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
+// BeerStore defines the methods for Beer Storage implementations
+type BeerStore interface {
+	PostBeer(nb *NewBeer) (Beer, error)
+	GetBeer(i string) (Beer, error)
+	GetAllBeers() ([]Beer, error)
+}
+
 // Beer holds values for a single beer object
 type Beer struct {
 	Id      string    `json:"id"`
@@ -22,8 +29,8 @@ type NewBeer struct {
 	Brewery string `json:"brewery"`
 }
 
-// Beers acts as an in memory database for Beer objects
-type Beers map[string]Beer
+// InMemoryBeerStore acts as an in memory database for Beer objects
+type InMemoryBeerStore map[string]Beer
 
 // Rating adds a rating for a beer object
 type Rating struct {
@@ -34,7 +41,7 @@ type Rating struct {
 	Review  string    `json:"review"`
 }
 
-func PostBeer(nb *NewBeer, db Beers) (Beer, error) {
+func (bs InMemoryBeerStore) PostBeer(nb *NewBeer) (Beer, error) {
 
 	beer := Beer{
 		Id:      uuid.New().String(),
@@ -50,15 +57,24 @@ func PostBeer(nb *NewBeer, db Beers) (Beer, error) {
 		return Beer{}, fmt.Errorf("error validating input: %+v", err)
 	}
 
-	db[beer.Id] = beer
+	bs[beer.Id] = beer
 	return beer, nil
 }
 
-func GetBeer(i string, db Beers) (Beer, error) {
-	b, ok := db[i]
+func (bs InMemoryBeerStore) GetBeer(i string) (Beer, error) {
+	b, ok := bs[i]
 	if !ok {
 		return b, fmt.Errorf("beer id does not exist in database")
 	}
 
 	return b, nil
+}
+
+func(bs InMemoryBeerStore) GetAllBeers() ([]Beer, error) {
+	var beers []Beer
+	for _, value := range bs {
+		beers = append(beers, value)
+	}
+
+	return beers, nil
 }

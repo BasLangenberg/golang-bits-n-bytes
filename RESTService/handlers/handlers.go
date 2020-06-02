@@ -14,16 +14,16 @@ import (
 // Syntappd hold the components to run this REST service
 type Syntappd struct {
 	l *log.Logger
-	d beer.Beers
+	d beer.BeerStore
 }
 
 // New returns a new Gorilla ServeMux
 // db should be converted to an interface / real database implementation
-func New(beers beer.Beers) *Syntappd {
+func New(beerstore beer.BeerStore) *Syntappd {
 	// Setup Syntappd object
 	app := Syntappd{
 		l: log.New(os.Stdout, "", 0),
-		d: beers,
+		d: beerstore,
 	}
 
 	return &app
@@ -77,7 +77,7 @@ func (app *Syntappd) PostBeer(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rb, err := beer.PostBeer(&nb, app.d)
+	rb, err := app.d.PostBeer(&nb)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Header().Set("Content-Type", "application/json")
@@ -93,7 +93,7 @@ func (app *Syntappd) GetBeer(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 
-	b, err := beer.GetBeer(vars["id"], app.d)
+	b, err := app.d.GetBeer(vars["id"])
 	if err != nil {
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte(`{ "error": "beer does not exist" }`))
@@ -113,9 +113,6 @@ func (app *Syntappd) GetAllBeers(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 
-	for _, value := range app.d {
-		beers = append(beers, value)
-	}
 
 	w.WriteHeader(http.StatusOK)
 	err := json.NewEncoder(w).Encode(beers)
