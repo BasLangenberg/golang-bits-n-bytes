@@ -81,7 +81,7 @@ func (app *Syntappd) PostBeer(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte(`{ "error": "invalid input json"`))
+		w.Write([]byte(`{ "error": "invalid input json" }`))
 		return
 	}
 	json.NewEncoder(w).Encode(rb)
@@ -103,7 +103,7 @@ func (app *Syntappd) GetBeer(w http.ResponseWriter, r *http.Request) {
 	err = json.NewEncoder(w).Encode(b)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(`{ "error": "Unable to retrieve stored beer"`))
+		w.Write([]byte(`{ "error": "Unable to retrieve stored beer" }`))
 		return
 	}
 }
@@ -118,7 +118,7 @@ func (app *Syntappd) GetAllBeers(w http.ResponseWriter, r *http.Request) {
 	err := json.NewEncoder(w).Encode(beers)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(`{ "error": "Unable to retrieve stored beers"`))
+		w.Write([]byte(`{ "error": "Unable to retrieve stored beers" }`))
 		return
 	}
 }

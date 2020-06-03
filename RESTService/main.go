@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/ninckblokje/golang-bits-n-bytes/RESTService/beer"
 	"github.com/ninckblokje/golang-bits-n-bytes/RESTService/handlers"
+	"github.com/ninckblokje/golang-bits-n-bytes/RESTService/persistence"
 	"log"
 	"net/http"
 )
@@ -16,7 +16,7 @@ func main() {
 	//	os.Exit(1)
 	//}
 
-	app := handlers.New(beer.InMemoryBeerStore{})
+	app := handlers.New(persistence.InMemoryBeerStore{})
 
 	// Setup Handlers
 	r := mux.NewRouter()
