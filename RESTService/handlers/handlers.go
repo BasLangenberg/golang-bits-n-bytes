@@ -109,13 +109,17 @@ func (app *Syntappd) GetBeer(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *Syntappd) GetAllBeers(w http.ResponseWriter, r *http.Request) {
-	var beers []beer.Beer
-
 	w.Header().Set("Content-Type", "application/json")
 
+	beer, err := app.d.GetAllBeers()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(`{ "error": "Unable to retrieve stored beers" }`))
+		return
+	}
 
 	w.WriteHeader(http.StatusOK)
-	err := json.NewEncoder(w).Encode(beers)
+	err = json.NewEncoder(w).Encode(beer)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(`{ "error": "Unable to retrieve stored beers" }`))

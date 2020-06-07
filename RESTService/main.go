@@ -1,22 +1,23 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/ninckblokje/golang-bits-n-bytes/RESTService/handlers"
 	"github.com/ninckblokje/golang-bits-n-bytes/RESTService/persistence"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
-	// Will be used later in the tutorial
-	//db, err := persistence.Init()
-	//if err != nil {
-	//	fmt.Printf("FATAL: %+v\n", err)
-	//	os.Exit(1)
-	//}
+	sqlite, err := persistence.Init()
+	if err != nil {
+		fmt.Printf("FATAL: %+v\n", err)
+		os.Exit(1)
+	}
 
-	app := handlers.New(persistence.InMemoryBeerStore{})
+	app := handlers.New(sqlite)
 
 	// Setup Handlers
 	r := mux.NewRouter()
@@ -32,6 +33,8 @@ func main() {
 		Addr:    "localhost:8080",
 	}
 
+	// This could be improved by using a "global" logger hanging on the app struct
+	log.Println("application now running on localhost:8080")
 
 	log.Fatal(srv.ListenAndServe())
 }
