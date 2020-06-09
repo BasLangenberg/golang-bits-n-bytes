@@ -13,7 +13,7 @@ Deze folder bevat verschillende projecten om Golang te introduceren. In elke fol
 
 ## Uitvoeren Java en Golang bestanden
 
-Golang bestanden kunnen worden uitgevoerd met het commando `go run [GO_FILE]`
+Golang bestanden kunnen worden uitgevoerd met het commando `go run [GO_FILE]`. Testen kunnen worden uitgevoerd met `go test`. Het bouwen kan met `go build`.
 
 Java bestanden (met uitzondering van `hello-world`) kunnen worden uitgevoerd met het commando: `jshell [JSH_FILE]`
 
