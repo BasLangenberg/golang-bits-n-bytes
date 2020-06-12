@@ -34,6 +34,7 @@ Installeer Golang, TinyGo (optioneel) en Java (optioneel):
 1. Download Golang versie 1.14.x van: <https://golang.org/>
 1. Download TinyGo versie 0.13.1 van: <https://tinygo.org/>
 1. Download Java versie 11.x van: <https://adoptopenjdk.net/>
+1. Op Windows: Download GCC (zie Opdracht 1: [Scaffold](Excercises/RESTService/1-Scaffold.md))
 
 ## Tour
 
@@ -49,4 +50,8 @@ Golang heeft een eigen tour die lokaal gedraaid kan worden:
 
 1. De folder [intro](intro/intro.md) bevat een introductie tot Golang.
 1. De folder [tinygo](tinygo/tinygo.md) bevat een voorbeeld van TinyGo met WebAssembly
-1. De folder [RESTService](RESTService/objectives.md) bevat een opdracht voor het bouwen van een eigen REST service
+1. De folder `Excercises/RESTService` bevat opdrachten voor het bouwen van een eigen REST service:
+   1. Opdracht 1: [Scaffold](Excercises/RESTService/1-Scaffold.md)
+   1. Opdracht 2: [Beer Service](Excercises/RESTService/2-BeerService.md)
+   1. Opdracht 3: [Struct Validation](Excercises/RESTService/3-StructValidation.md)
+   1. Opdracht 4: [Data Persistence](Excercises/RESTService/4-DataPersistence.md)

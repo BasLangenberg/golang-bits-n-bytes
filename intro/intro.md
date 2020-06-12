@@ -10,6 +10,8 @@ Deze folder bevat verschillende projecten om Golang te introduceren. In elke fol
 1. **pointers**: Pointers 😈
 1. **resources**: Gebruik van resources zoals bestanden
 1. **interfaces**: Interfaces
+1. **goroutines**: Goroutines
+1. **testing**: Testing
 
 ## Uitvoeren Java en Golang bestanden
 
