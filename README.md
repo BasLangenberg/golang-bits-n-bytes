@@ -13,6 +13,7 @@ De opdrachten kunnen op verschillende manieren uitgevoerd worden:
 ### Visual Studio Code & Docker
 
 1. [Visual Studio Code](https://code.visualstudio.com/) + [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extensie
+2. Het is handig om ook de [vscode Go plugin](https://marketplace.visualstudio.com/items?itemName=golang.go) te installeren
 2. [Docker](https://www.docker.com/)
 
 Visual Studio Code start automatisch een Docker container met daarin alle benodigde tools. Om commando's in te tikken moet gebruik worden gemaakt van de ingebouwde terminal van Visual Studio Code.

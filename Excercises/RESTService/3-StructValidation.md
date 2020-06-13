@@ -9,7 +9,7 @@ We'll start by telling Go which specific fields have validation rules. Open beer
        Brewery string    `json:"brewery" validate:"required"`
 ```
 
-Add the following logic right after the creation of the beer variable.
+Now we need to edit PostBeer. Add the following logic right after the creation of the beer variable. (After line 46 in beer.go)
 
 ```go
 	v := validator.New()
@@ -31,7 +31,7 @@ Note we need to return an error now. If all is well, we can return a nil object 
 return beer, nil
 ```
 
-We need to make a modification to the handlers package (which is in handlers.go) to make it handle the error PostBeer now returns.
+We need to make a modification to the handlers package (which is in handlers.go) to make it handle the error PostBeer now returns. In the PostBeer method, change line 79 to look like the following.
 
 ```go
        rb, err := beer.PostBeer(&nb, app.d)
@@ -50,6 +50,29 @@ Run the app
 ```bash
 go run main.go
 ```
+
+it might be you run into the following error:
+
+```bash
+bas@DESKTOP-RFVONSL: /mnt/c/data/golang-bits-n-bytes/Excercises/RESTService/Scaffold $ go run main.go
+# github.com/ninckblokje/golang-bits-n-bytes/RESTService/beer
+beer/beer.go:48:7: undefined: validator
+zsh: exit 2     go run main.go
+```
+
+This is due to a missing import in beer.go. Fix it by adding the package to the import statement on the top of the file. Another option is typing the line out manually, VSCode with the Go plugin will then automatically pick-up the import.
+
+```go
+import (
+	"fmt"
+	"time"
+
+	"github.com/go-playground/validator"
+	"github.com/google/uuid"
+)
+```
+
+After this, retry running you app. It should work now.
 
 If you now do a curl with an empty name or brewery, the creation of the beer will fail.
 

@@ -202,6 +202,15 @@ Now we need to tie the new code together and add it to the main function. We sta
        r.HandleFunc("/beer", app.PostBeer).Methods("POST")
        r.HandleFunc("/beer", app.GetAllBeers).Methods("GET")
        r.HandleFunc("/beer/{id}", app.GetBeer).Methods("GET")
+
+       	srv := http.Server{
+		Handler: r,
+		Addr:    "localhost:8080",
+	}
+
+        log.Println("Application started succesfully!")
+
+	log.Fatal(srv.ListenAndServe())
 ```
 
 ## Test the beer logic
@@ -223,6 +232,31 @@ curl --location --request GET 'localhost:8080/beer'
 
 # Change uuid to one of the uuid from one of the beers that were returned in the previous call
 curl --location --request GET 'localhost:8080/beer/92a63846-414a-4022-b15a-8a40ab21a520'
+```
+
+If you want to see this in a more formatted view, install jq. That will format json for you.
+
+```bash
+bas@DESKTOP-RFVONSL: /mnt/c/data/golang-bits-n-bytes $ curl --location --request GET 'localhost:8080/beer' | jq
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   309  100   309    0     0  34333      0 --:--:-- --:--:-- --:--:-- 34333
+[
+  {
+    "id": "d8e9255f-efa3-42f1-a293-9a63f67bf37e",
+    "name": "Platinum Blond",
+    "brewery": "SynBeer Lab",
+    "reviews": [],
+    "added_on": "2020-06-13T17:06:32.2683288+02:00"
+  },
+  {
+    "id": "343bedf8-74fc-4a8b-9046-223245fa9227",
+    "name": "Golden Tripel",
+    "brewery": "SynBeer Lab",
+    "reviews": [],
+    "added_on": "2020-06-13T17:06:33.0233902+02:00"
+  }
+]
 ```
 
 ## Additional excercises
