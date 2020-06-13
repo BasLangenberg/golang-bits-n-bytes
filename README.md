@@ -25,7 +25,9 @@ Open de folder in Visual Studio Code. Hierna vraagt Visual Studio Code om de con
 
 Deze repository is te openen via gitpod.io door op deze link te klikken: https://gitpod.io/#https://github.com/ninckblokje/golang-bits-n-bytes. Hiervoor is een GitHub account nodig.
 
-De tour werkt (nog) niet via gitpod.io.
+In de terminal van gitpod.io moet eerst het path goed gezet worden: `. ./setEnv.sh`
+
+De tour werkt niet via gitpod.io.
 
 ### Eigen installatie
 
