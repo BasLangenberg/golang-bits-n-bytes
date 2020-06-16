@@ -14,6 +14,20 @@ func GiveMeError(ok bool) (*string, error) {
 	return nil, fmt.Errorf("Tweede steen: %w", errors.New("Foutje, bedankt"))
 }
 
+func Panic4Me() {
+	panic("Paniek paniek!")
+}
+
+func RecoverPanic() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
+
+	Panic4Me()
+}
+
 func main() {
 	_, err1 := GiveMeError(true)
 	if err1 != nil {
@@ -29,4 +43,6 @@ func main() {
 	} else {
 		fmt.Println("Geen error 2")
 	}
+
+	RecoverPanic()
 }
